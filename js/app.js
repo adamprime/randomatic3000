@@ -30,7 +30,7 @@ class RandoMatic {
         
         this.bindEvents();
         
-        this.optionsManager.setOptions(['Speaker 1', 'Speaker 2', 'Speaker 3']);
+        this.optionsManager.setOptions(['Thing 1', 'Thing 2', 'Thing 3']);
     }
 
     applyTheme() {
