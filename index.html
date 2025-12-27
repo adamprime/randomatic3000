@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandoMatic 3000</title>
+    <meta name="description" content="A retro-styled randomization playground featuring six unique engines to help you make decisions through the power of chaos.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>RandoMatic 3000</h1>
+        <p class="tagline">Six ways to let the universe decide</p>
+    </header>
+    
+    <main class="main-container">
+        <!-- Left Panel: Options -->
+        <div class="panel" id="options-panel">
+            <!-- Rendered by OptionsManager -->
+        </div>
+        
+        <!-- Center Panel: Visualization -->
+        <div class="panel viz-panel">
+            <h3>Randomization Engine</h3>
+            <div id="engine-selector">
+                <!-- Rendered by app -->
+            </div>
+            
+            <h3>Mode</h3>
+            <div id="mode-selector">
+                <!-- Rendered by app -->
+            </div>
+            
+            <div id="visualization">
+                <p style="color: var(--text-secondary);">Select an engine and click "Run Single" or run trials</p>
+            </div>
+            
+            <button class="btn btn-run" id="single-run">🎲 Run Single</button>
+        </div>
+        
+        <!-- Right Panel: Trials & Results -->
+        <div class="panel">
+            <div id="trials-panel">
+                <!-- Rendered by TrialRunner -->
+            </div>
+            
+            <div id="results-panel" style="margin-top: 20px;">
+                <!-- Rendered by ResultsDisplay -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Scripts -->
+    <script src="js/engines/base.js"></script>
+    <script src="js/engines/crypto.js"></script>
+    <script src="js/engines/wheel.js"></script>
+    <script src="js/engines/dice.js"></script>
+    <script src="js/engines/cards.js"></script>
+    <script src="js/engines/lottery.js"></script>
+    <script src="js/engines/coins.js"></script>
+    <script src="js/ui/options.js"></script>
+    <script src="js/ui/trials.js"></script>
+    <script src="js/ui/results.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandoMatic 3000 - Test Suite</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #00ff88;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff88;
+        }
+        
+        h2 {
+            color: #888;
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        
+        #test-summary {
+            background: #2a2a4e;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        #test-summary.all-passed {
+            border: 2px solid #00ff88;
+            color: #00ff88;
+        }
+        
+        #test-summary.has-failures {
+            border: 2px solid #ff4466;
+            color: #ff4466;
+        }
+        
+        #test-results {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-result {
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-result.passed {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 3px solid #00ff88;
+        }
+        
+        .test-result.failed {
+            background: rgba(255, 68, 102, 0.1);
+            border-left: 3px solid #ff4466;
+        }
+        
+        .test-result .status {
+            font-size: 1.2em;
+        }
+        
+        .test-result .name {
+            flex: 1;
+        }
+        
+        .test-result .error {
+            color: #ff4466;
+            font-size: 0.9em;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎰 RandoMatic 3000</h1>
+    <h2>Test Suite</h2>
+    
+    <div id="test-summary">Running tests...</div>
+    <div id="test-results">
+        <div class="loading">Loading test modules...</div>
+    </div>
+    
+    <script src="test-framework.js"></script>
+    <script src="../js/engines/base.js"></script>
+    <script src="../js/engines/crypto.js"></script>
+    <script src="../js/engines/wheel.js"></script>
+    <script src="../js/engines/dice.js"></script>
+    <script src="../js/engines/cards.js"></script>
+    <script src="../js/engines/lottery.js"></script>
+    <script src="../js/engines/coins.js"></script>
+    <script src="engines/base.test.js"></script>
+    <script src="engines/crypto.test.js"></script>
+    <script src="engines/wheel.test.js"></script>
+    <script src="engines/dice.test.js"></script>
+    <script src="engines/cards.test.js"></script>
+    <script src="engines/lottery.test.js"></script>
+    <script src="engines/coins.test.js"></script>
+    <script>
+        document.getElementById('test-results').innerHTML = '';
+        TestRunner.summary();
+    </script>
+</body>
+</html>
