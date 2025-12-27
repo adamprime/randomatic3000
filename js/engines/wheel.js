@@ -4,10 +4,10 @@ class WheelEngine extends BaseEngine {
     constructor() {
         super('Wheel Spin', 'wheel');
         this.colors = [
-            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-            '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
-            '#F8B500', '#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9',
-            '#92A8D1', '#955251', '#B565A7', '#009B77', '#DD4124'
+            '#EF476F', '#FFD166', '#06D6A0', '#118AB2', '#073B4C',
+            '#F78C6B', '#83D483', '#0CB0A9', '#FFC857', '#E9724C',
+            '#C5283D', '#255F85', '#9381FF', '#B8B8FF', '#F8F9FA',
+            '#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51'
         ];
     }
     

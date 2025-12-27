@@ -4,10 +4,10 @@ class LotteryEngine extends BaseEngine {
     constructor() {
         super('Lottery Balls', 'lottery');
         this.ballColors = [
-            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-            '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
-            '#FF8C42', '#6C5CE7', '#00B894', '#E17055', '#74B9FF',
-            '#A29BFE', '#FD79A8', '#00CEC9', '#E84393', '#2D3436'
+            '#EF476F', '#FFD166', '#06D6A0', '#118AB2', '#073B4C',
+            '#F78C6B', '#83D483', '#0CB0A9', '#FFC857', '#E9724C',
+            '#C5283D', '#255F85', '#9381FF', '#B8B8FF', '#F8F9FA',
+            '#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51'
         ];
     }
     
