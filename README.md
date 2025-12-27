@@ -31,7 +31,7 @@ This is a retro-styled, over-engineered, delightfully unnecessary randomization 
 
 | Engine | Vibe | Best For |
 |--------|------|----------|
-| 🎡 **Wheel Spin** | County fair energy | Making Karen feel like she won something |
+| 🎡 **Wheel Spin** | County fair energy | Making the boss feel like she won something |
 | 🎲 **Dice Roll** | Vegas, baby | Adding unnecessary drama to lunch orders |
 | 🃏 **Card Shuffle** | Mysterious uncle at Thanksgiving | When you want to feel fancy |
 | 🎱 **Lottery Balls** | "I've got a system" | Disappointing people, but randomly |
