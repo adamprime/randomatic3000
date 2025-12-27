@@ -17,9 +17,11 @@ class RandoMatic {
         this.resultsDisplay = new ResultsDisplay('results-panel');
         
         this.mode = 'pick';
+        this.theme = localStorage.getItem('theme') || 'light';
     }
     
     init() {
+        this.applyTheme();
         this.renderEngineSelector();
         this.renderModeSelector();
         this.optionsManager.render();
@@ -29,6 +31,20 @@ class RandoMatic {
         this.bindEvents();
         
         this.optionsManager.setOptions(['Speaker 1', 'Speaker 2', 'Speaker 3']);
+    }
+
+    applyTheme() {
+        document.documentElement.setAttribute('data-theme', this.theme);
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            toggleBtn.textContent = this.theme === 'dark' ? '☀️' : '🌓';
+        }
+    }
+
+    toggleTheme() {
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
+        localStorage.setItem('theme', this.theme);
+        this.applyTheme();
     }
     
     renderEngineSelector() {
@@ -87,6 +103,10 @@ class RandoMatic {
                 this.renderModeSelector();
                 this.resultsDisplay.clear();
             }
+        });
+
+        document.getElementById('theme-toggle')?.addEventListener('click', () => {
+            this.toggleTheme();
         });
         
         document.getElementById('single-run')?.addEventListener('click', () => {

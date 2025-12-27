@@ -1,7 +1,7 @@
-/* RandoMatic 3000 - Vintage 50s/60s Diner Style */
+/* RandoMatic 3000 - Vintage 50s/60s Diner Style & Dark Mode */
 
 :root {
-    /* Diner / Atomic Age Palette */
+    /* Default Light Mode (Diner / Atomic Age Palette) */
     --bg-primary: #FDFBF7; /* Creamy off-white */
     --bg-secondary: #E0E0E0; /* Chrome/Metal base */
     --bg-tertiary: #FFFFFF; /* Pure white */
@@ -21,6 +21,43 @@
     --shadow-soft: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-hard: 4px 4px 0px rgba(0,0,0,0.2);
     --shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.1);
+
+    /* Engine specific fix */
+    --die-bg: #FFFFFF;
+    --die-dot: #2B2D42;
+    --die-shadow: #ccc;
+    --card-bg: #FFFFFF;
+    --viz-text: #2B2D42;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode (Neon / Cyber Diner) */
+    --bg-primary: #121212; /* Deep Dark */
+    --bg-secondary: #1E1E1E; /* Dark Gray */
+    --bg-tertiary: #2D2D2D; /* Lighter Dark */
+    
+    --accent-primary: #FF5C8D; /* Bright Pink */
+    --accent-secondary: #00FF9D; /* Neon Green */
+    --accent-tertiary: #FFD166; /* Golden Yellow (keeps warmth) */
+    --accent-dark: #4CC9F0; /* Bright Cyan */
+    
+    --text-primary: #E0E0E0; /* Off-white */
+    --text-secondary: #A0A0A0; /* Light Gray */
+    --text-light: #121212; /* Dark text for light buttons */
+    
+    --border-color: #404040;
+    --chrome-gradient: linear-gradient(135deg, #2D2D2D 0%, #1E1E1E 50%, #2D2D2D 100%);
+    
+    --shadow-soft: 0 4px 6px rgba(0,0,0,0.5);
+    --shadow-hard: 4px 4px 0px rgba(0,0,0,0.5);
+    --shadow-inset: inset 2px 2px 5px rgba(0,0,0,0.5);
+
+    /* Engine specific fix */
+    --die-bg: #E0E0E0;
+    --die-dot: #121212;
+    --die-shadow: #000;
+    --card-bg: #E0E0E0;
+    --viz-text: #FFFFFF;
 }
 
 * {
@@ -38,6 +75,7 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Header */
@@ -49,6 +87,15 @@ body {
     box-shadow: var(--shadow-soft);
     position: relative;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-content {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
 }
 
 .header h1 {
@@ -68,6 +115,35 @@ body {
     font-size: 1rem;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+/* Theme Toggle */
+.theme-toggle-wrapper {
+    position: absolute;
+    top: 0;
+    right: 20px;
+}
+
+.theme-toggle {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
 }
 
 /* Main Layout */
@@ -90,8 +166,16 @@ body {
         gap: 20px;
     }
     
-    /* Order specific for mobile: Visuals first, then controls, then results */
-    /* Removed reordering to maintain logical flow: Options -> Viz -> Results */
+    .theme-toggle-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 15px;
+    }
+    
+    .viz-panel {
+        order: -1;
+    }
 }
 
 /* Panels - Jukebox Card Style */
@@ -103,6 +187,7 @@ body {
     box-shadow: var(--shadow-hard);
     position: relative;
     overflow: hidden;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Decorative top bar for panels */
@@ -151,7 +236,7 @@ body {
 .btn:hover:not(:disabled) {
     transform: translate(-1px, -1px);
     box-shadow: 4px 4px 0px var(--text-primary);
-    background: white;
+    background: var(--bg-tertiary);
 }
 
 .btn:active:not(:disabled) {
@@ -170,16 +255,24 @@ body {
     background: var(--accent-tertiary);
     box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1);
     transform: translate(1px, 1px);
+    color: var(--text-light);
+    border-color: var(--text-primary);
 }
+/* Ensure text contrast for active buttons in dark mode */
+[data-theme="dark"] .btn.active {
+    color: #121212;
+}
+
 
 .btn-run {
     background: var(--accent-secondary);
-    color: white;
+    color: #fff;
     border-color: #04966f;
     box-shadow: 3px 3px 0px #04966f;
     width: 100%;
     font-size: 1.2rem;
     padding: 15px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 }
 
 .btn-run:hover:not(:disabled) {
@@ -227,7 +320,7 @@ body {
 }
 
 .btn-mode.active {
-    background: white;
+    background: var(--bg-tertiary);
     color: var(--accent-primary);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -246,6 +339,7 @@ body {
     border-radius: 20px;
     font-weight: bold;
     font-size: 0.8rem;
+    color: #2B2D42; /* Always dark text on yellow */
     border: 2px solid var(--text-primary);
 }
 
@@ -261,11 +355,11 @@ body {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
-    background: white;
+    background: var(--bg-tertiary);
     padding: 8px;
     border-radius: 10px;
-    border: 1px solid #eee;
-    box-shadow: 2px 2px 0px #eee;
+    border: 1px solid var(--border-color);
+    box-shadow: 2px 2px 0px var(--border-color);
 }
 
 .option-number {
@@ -295,7 +389,7 @@ body {
 
 .option-input:focus {
     outline: none;
-    background: #f0f8ff;
+    background: var(--bg-secondary);
     border-radius: 4px;
 }
 
@@ -311,18 +405,23 @@ body {
     color: var(--accent-primary);
     box-shadow: 2px 2px 0px #ffcccc;
 }
+[data-theme="dark"] .btn-remove {
+    background: #2a1a1a;
+    border-color: #503030;
+    box-shadow: 2px 2px 0px #503030;
+}
 
 .btn-add {
     width: 100%;
     border-style: dashed;
-    background: #f0fcf8;
+    background: rgba(6, 214, 160, 0.1);
     color: var(--accent-secondary);
     border-color: var(--accent-secondary);
     box-shadow: none;
 }
 
 .btn-add:hover {
-    background: #e0fcf6;
+    background: rgba(6, 214, 160, 0.2);
 }
 
 /* Trials Panel */
@@ -339,7 +438,7 @@ body {
 
 .trial-custom {
     width: 80px;
-    background: white;
+    background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
     color: var(--text-primary);
     padding: 8px;
@@ -403,6 +502,10 @@ body {
         0 10px 20px rgba(0,0,0,0.2);
 }
 
+[data-theme="dark"] #visualization {
+    border-color: #404040;
+}
+
 /* CRT Scanline Effect Overlay */
 #visualization::after {
     content: " ";
@@ -429,7 +532,7 @@ body {
 .btn-clear {
     font-size: 0.8rem;
     padding: 6px 12px;
-    background: #eee;
+    background: var(--bg-secondary);
 }
 
 .result-row {
@@ -482,13 +585,13 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-size: 0.85rem;
-    color: var(--text-primary);
+    color: #2B2D42; /* Always dark text for readability on bars */
     font-weight: bold;
     z-index: 2;
 }
 
 .results-summary {
-    background: #e8f4f8;
+    background: var(--bg-secondary);
     padding: 15px;
     border-radius: 12px;
     border-left: 5px solid var(--accent-dark);
@@ -512,16 +615,16 @@ body {
 }
 
 .position-table td {
-    background: white;
+    background: var(--bg-tertiary);
     padding: 10px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .position-table td:first-child {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    border-left: 1px solid #eee;
+    border-left: 1px solid var(--border-color);
     font-weight: bold;
     color: var(--accent-dark);
 }
@@ -529,14 +632,14 @@ body {
 .position-table td:last-child {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    border-right: 1px solid #eee;
+    border-right: 1px solid var(--border-color);
 }
 
 .suggested-order {
     margin-top: 15px;
     padding: 15px;
     background: var(--accent-tertiary); /* Yellow note */
-    color: var(--text-primary);
+    color: #2B2D42; /* Always dark text on yellow */
     border-radius: 2px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     transform: rotate(-1deg);
@@ -570,9 +673,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(#2a9d8f 1px, transparent 1px);
+    background: radial-gradient(rgba(42, 157, 143, 0.2) 1px, transparent 1px);
     background-size: 20px 20px;
-    background-color: #f0f0f0;
+    background-color: var(--bg-secondary);
 }
 
 .dice-wrapper {
@@ -585,14 +688,14 @@ body {
 .die {
     width: 90px;
     height: 90px;
-    background: white;
+    background: var(--die-bg);
     border-radius: 16px;
-    box-shadow: 0 8px 0px #ccc, 0 8px 20px rgba(0,0,0,0.3);
-    border: 2px solid #eee;
+    box-shadow: 0 8px 0px var(--die-shadow), 0 8px 20px rgba(0,0,0,0.3);
+    border: 2px solid var(--border-color);
 }
 
 .die-cell.dot {
-    background: var(--text-primary);
+    background: var(--die-dot); /* Specific contrasting color */
     box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
 }
 
@@ -600,7 +703,7 @@ body {
     font-family: 'Righteous', cursive;
     font-size: 2rem;
     color: var(--accent-primary);
-    text-shadow: 2px 2px 0px white;
+    text-shadow: 2px 2px 0px var(--bg-primary);
 }
 
 /* Cards */
@@ -610,7 +713,8 @@ body {
 }
 
 .card-front {
-    border: 4px solid white;
+    border: 4px solid var(--card-bg);
+    background: var(--card-bg);
 }
 
 .card-back {
@@ -624,6 +728,15 @@ body {
     border: 2px solid white;
 }
 
+/* Ensure suits are visible */
+.card-suit {
+    /* Color is set inline by JS, but we ensure background is white/light */
+}
+
+.card-label {
+    color: #2B2D42 !important; /* Force dark text for card labels */
+}
+
 /* Lottery */
 .lottery-machine {
     background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent),
@@ -635,10 +748,12 @@ body {
 .lottery-ball {
     border: 2px solid rgba(255,255,255,0.3);
     font-family: 'Arial', sans-serif;
+    color: white; /* Ensure ball numbers are white */
 }
 
 .ball-label {
     background: white;
+    color: #2B2D42;
     padding: 2px 8px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -647,7 +762,7 @@ body {
 
 /* Coins */
 .viz-coins {
-    background: #f1faee;
+    background: var(--bg-secondary);
 }
 
 .coin-front {
@@ -664,13 +779,21 @@ body {
 
 .coins-result .binary {
     font-family: 'Courier New', monospace;
-    color: var(--text-secondary);
+    color: var(--viz-text);
 }
 
 .coins-result .winner {
     font-family: 'Righteous', cursive;
     color: var(--accent-secondary);
     font-size: 1.8rem;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+/* Result Overlay text in Viz */
+.order-result {
+    color: var(--accent-secondary);
+    background: rgba(0,0,0,0.9);
+    border: 1px solid var(--accent-secondary);
 }
 
 /* Custom Scrollbar */
