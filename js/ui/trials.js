@@ -75,7 +75,7 @@ class TrialRunner {
     }
     
     async runTrials() {
-        if (!this.currentEngine || this.isRunning) return;
+        if (this.isRunning || !this.onTrialComplete) return;
         
         this.isRunning = true;
         this.container.querySelector('#run-trials').disabled = true;
